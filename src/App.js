@@ -98,17 +98,6 @@ class App extends Component {
         }),
       }
     );
-
-    // return(
-    //   <p>
-    //   <label>
-    //     <input type="checkbox"
-    //       checked="checked"
-    //       className="filled-in" />
-    //     <span></span>
-    //   </label>
-    // </p>
-    // );
   }
 
   // Remove uma task da lista

@@ -68,10 +68,9 @@ class Form extends Component {
                 <button onClick={this.submitForm}
                     type="button"
                     className="waves-effect
-                waves-light
-                blue
-                btn
-                margin">Add</button>
+                    waves-light
+                    btn
+                    margin">Add</button>
                 <input
                     id="search"
                     type="text"

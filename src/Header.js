@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
 
-const Header = () => {
+const Header = (props) => {
     return (
-        <nav className="blue center">
+        <nav className="center">
             <div>
-                <a href="/" className="size margem-header">ToDo List</a>
+                <a href="/" className="size">ToDo List</a>
+                <button onClick={props.changeTheme}>mudar tema</button>
             </div>
         </nav>
     );

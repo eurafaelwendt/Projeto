@@ -1,5 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import 'materialize-css/dist/css/materialize.min.css';
+// import '/dist/css/materialize.min.css';
+// import './themeDark.scss';
+// import './themeLight.scss';
+// import './themeDefault.scss';
 import Header from './Header';
 import './App.css';
 import Form from './Form';
@@ -42,6 +45,13 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+    import('./themeDefault.scss')
+      .then((css) => {
+        console.log(css);
+      })
+      .catch(err => {
+        console.log(err);
+      });
     this.state = {
       tasks: [{
         id: 0,
@@ -69,14 +79,24 @@ class App extends Component {
     const { tasks } = this.state;
     const edit = prompt("Edit task:");
 
+    if (edit === ''){
+      console.log('vazio');
+    }else{
+      console.log('não é vazio')
+    }
+
     this.setState(
       {
         tasks: tasks.map((t) => {
           if(task.id !== t.id){
             return t;
-          }else{
+          }
+          if(edit !== ''){
+            console.log(edit);
             task.nome = edit;
             return task;
+          }else{
+            return t;
           }
         }),
       }
@@ -170,10 +190,20 @@ class App extends Component {
     })
   }
 
+  changeTheme = () => {
+    import('./themeLight.scss')
+      .then((css) => {
+        // console.log(css);
+      })
+      .catch(err => {
+        // console.log(err);
+      });
+  }
+
   render() {
     return (
       <Fragment>
-        <Header></Header>
+        <Header changeTheme={this.props.changeTheme}></Header>
         <div className="container">
           <Form listenerSubmit={this.listenerSubmit}
           setFilterText={this.setFilterText}></Form>
@@ -206,7 +236,7 @@ class App extends Component {
             statusModify={this.statusModify}
             editTask={this.editTask}>
           </TaskTable>
-          <button onClick={this.removeAll} className="waves-effect waves-light red btn margin">Remove all</button>
+          <button onClick={this.removeAll} className="waves-effect waves-light btn margin">Remove all</button>
         </div>
         <Options></Options>
       </Fragment>

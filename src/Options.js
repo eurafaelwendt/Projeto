@@ -6,21 +6,18 @@ const Options = () => {
         <div className="container center">
             <button className="waves-effect
                     waves-light
-                    blue
                     btn
                     margin">
                     Download the tasks
             </button>
             <button className="waves-effect
                     waves-light
-                    grey
                     btn
                     margin">
                     Theme light
             </button>
             <button className="waves-effect
                     waves-light
-                    grey darken-4
                     btn
                     margin">
                     Theme dark

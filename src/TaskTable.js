@@ -33,13 +33,11 @@ const TableBody = props => {
                 <td><button onClick={() => { props.removeTask(task) }}
                     className="waves-effect
                 waves-light
-                red
                 btn">Remove</button>
                 </td>
                 <td><button onClick={() => {props.editTask(task)}}
                 className="waves-effect
                 waves-light
-                orange
                 btn">Edit</button>
                 </td>
             </tr>

@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
 
-const Header = (props) => {
+const Header = () => {
     return (
-        <nav className="center">
+        <nav style={{textAlign:"center"}}>
             <div>
-                <a href="/" className="size">ToDo List</a>
-                <button onClick={props.changeTheme}>mudar tema</button>
+                <a href="/" className="size">To Do List</a>
             </div>
         </nav>
     );

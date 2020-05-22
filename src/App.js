@@ -7,7 +7,16 @@ import Header from './Header';
 import './App.css';
 import Form from './Form';
 import TaskTable from './TaskTable';
-import Options from './Options';
+
+// const toggleTheme = () => {
+//   if (theme === "light") {
+//     window.localStorage.setItem("theme", "dark");
+//     setTheme("dark");
+//   } else {
+//     window.localStorage.setItem("theme", "light");
+//     setTheme("light");
+//   }
+// };
 
 // Filtra apenas as tarefas finalizadas
 const filterDone = (tasks) => {
@@ -45,13 +54,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    import('./themeDefault.scss')
-      .then((css) => {
-        console.log(css);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+
     this.state = {
       tasks: [{
         id: 0,
@@ -69,8 +72,10 @@ class App extends Component {
         nome: 'CSS'
       }],
       filterFn: 'all',
-      filterText: ''
+      filterText: '',
     }
+
+    // const [theme, setTheme] = useState("light");
 }
 
   // Edita a task
@@ -190,56 +195,45 @@ class App extends Component {
     })
   }
 
-  changeTheme = () => {
-    import('./themeLight.scss')
-      .then((css) => {
-        // console.log(css);
-      })
-      .catch(err => {
-        // console.log(err);
-      });
-  }
-
   render() {
     return (
-      <Fragment>
-        <Header changeTheme={this.props.changeTheme}></Header>
-        <div className="container">
-          <Form listenerSubmit={this.listenerSubmit}
-          setFilterText={this.setFilterText}></Form>
-          <p>
-            <label>
-              <input className="with-gap"
-                name="group1"
-                type="radio"
-                onClick={this.filterRadiousAll}/>
-              <span>All</span>
-            </label>
-            <label className="margin">
-              <input className="with-gap"
-                name="group1" type="radio"
-                onClick={this.filterRadiousDone} />
-              <span>Done</span>
-            </label>
-            <label className="margin">
-              <input className="with-gap"
-                name="group1"
-                type="radio"
-                onClick={this.filterRadiousToDo} />
-              <span>ToDo</span>
-            </label>
-          </p>
-          <TaskTable tasks={fns[this.state.filterFn](this.state.tasks, this.state.filterText)}
-            status={this.state.tasks.status}
-            removeTask={this.removeTask}
-            removeAll={this.removeAll}
-            statusModify={this.statusModify}
-            editTask={this.editTask}>
-          </TaskTable>
-          <button onClick={this.removeAll} className="waves-effect waves-light btn margin">Remove all</button>
-        </div>
-        <Options></Options>
-      </Fragment>
+        <Fragment>
+          <Header changeTheme={this.props.changeTheme}></Header>
+          <div className="container">
+            <Form listenerSubmit={this.listenerSubmit}
+            setFilterText={this.setFilterText}></Form>
+            <p>
+              <label>
+                <input className="with-gap"
+                  name="group1"
+                  type="radio"
+                  onClick={this.filterRadiousAll}/>
+                <span>All</span>
+              </label>
+              <label className="margin">
+                <input className="with-gap"
+                  name="group1" type="radio"
+                  onClick={this.filterRadiousDone} />
+                <span>Done</span>
+              </label>
+              <label className="margin">
+                <input className="with-gap"
+                  name="group1"
+                  type="radio"
+                  onClick={this.filterRadiousToDo} />
+                <span>ToDo</span>
+              </label>
+            </p>
+            <TaskTable tasks={fns[this.state.filterFn](this.state.tasks, this.state.filterText)}
+              status={this.state.tasks.status}
+              removeTask={this.removeTask}
+              removeAll={this.removeAll}
+              statusModify={this.statusModify}
+              editTask={this.editTask}>
+            </TaskTable>
+            <button onClick={this.removeAll} className="waves-effect waves-light btn margin">Remove all</button>
+          </div>
+        </Fragment>
     );
   }
 }

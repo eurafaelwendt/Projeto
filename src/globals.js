@@ -10,7 +10,7 @@ export default createGlobalStyle`
   nav{
     background: ${({ theme }) => theme.nav};
     height: 80px;
-    padding: 25px;
+    padding: 10px;
   }
 
   input{
@@ -26,8 +26,8 @@ export default createGlobalStyle`
   button{
     background: ${({ theme }) => theme.button};
     border: none;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 12px;
+    border-radius: 2px;
     color: white;
   }
 
@@ -44,5 +44,4 @@ export default createGlobalStyle`
   table {
     width: 100%;
   }
-
 `;

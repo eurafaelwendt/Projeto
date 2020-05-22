@@ -23,22 +23,15 @@ const TableBody = props => {
                         <label>
                             <input type="checkbox"
                                 checked={task.status}
-                                className="filled-in"
                                 onChange={() => props.statusModify(task)} />
                             <span></span>
                         </label>
                     </p>
                 </td>
                 <td>{task.nome}</td>
-                <td><button onClick={() => { props.removeTask(task) }}
-                    className="waves-effect
-                waves-light
-                btn">Remove</button>
+                <td><button onClick={() => { props.removeTask(task) }}>REMOVE</button>
                 </td>
-                <td><button onClick={() => {props.editTask(task)}}
-                className="waves-effect
-                waves-light
-                btn">Edit</button>
+                <td><button onClick={() => {props.editTask(task)}}>EDIT</button>
                 </td>
             </tr>
         );

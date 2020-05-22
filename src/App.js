@@ -1,22 +1,8 @@
 import React, { Component, Fragment } from 'react';
-// import '/dist/css/materialize.min.css';
-// import './themeDark.scss';
-// import './themeLight.scss';
-// import './themeDefault.scss';
 import Header from './Header';
 import './App.css';
 import Form from './Form';
 import TaskTable from './TaskTable';
-
-// const toggleTheme = () => {
-//   if (theme === "light") {
-//     window.localStorage.setItem("theme", "dark");
-//     setTheme("dark");
-//   } else {
-//     window.localStorage.setItem("theme", "light");
-//     setTheme("light");
-//   }
-// };
 
 // Filtra apenas as tarefas finalizadas
 const filterDone = (tasks) => {
@@ -74,8 +60,6 @@ class App extends Component {
       filterFn: 'all',
       filterText: '',
     }
-
-    // const [theme, setTheme] = useState("light");
 }
 
   // Edita a task
@@ -231,7 +215,7 @@ class App extends Component {
               statusModify={this.statusModify}
               editTask={this.editTask}>
             </TaskTable>
-            <button onClick={this.removeAll} className="waves-effect waves-light btn margin">Remove all</button>
+            <button onClick={this.removeAll} className="margin">REMOVE ALL</button>
           </div>
         </Fragment>
     );

@@ -187,6 +187,19 @@ class App extends Component {
     }, 0)
   }
 
+  csvTask = async () => {
+    const fileName = "Tasks List";
+    const json = JSON.stringify(this.state.tasks);
+    const blob = new Blob([json],{type:'application/json'});
+    const href = await URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = href;
+    link.download = fileName + ".txt";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
   render() {
     return (
       <Fragment>
@@ -225,6 +238,7 @@ class App extends Component {
             editTask={this.editTask}>
           </TaskTable>
           <button onClick={this.removeAll} className="margin">REMOVE ALL</button>
+          <button className="margin" onClick={this.csvTask} style={{backgroundColor:"#4db6ac"}}>DOWNLOAD THE TASKS</button>
         </div>
       </Fragment>
     );

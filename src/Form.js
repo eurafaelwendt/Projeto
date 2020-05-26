@@ -27,6 +27,8 @@ class Form extends Component {
         this.setState({
             [name]: value
         });
+
+        clearImmediate();
     }
 
     // Recupera o contéudo do input de filtro das tasks
@@ -63,6 +65,7 @@ class Form extends Component {
                     value={nome}
                     onChange={this.listenerInput}
                     placeholder="Enter a task..."
+                    autoComplete="off"
                 />
                 <button onClick={this.submitForm}
                     type="button"
@@ -74,6 +77,7 @@ class Form extends Component {
                     value={search}
                     onChange={this.listenerInputSearch}
                     placeholder="Enter a task you want..."
+                    autoComplete="off"
                 />
             </form >
         );

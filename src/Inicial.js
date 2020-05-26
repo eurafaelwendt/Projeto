@@ -12,16 +12,16 @@ function Inicial() {
   const toggleThemeDefault = () => {
     window.localStorage.setItem("theme", "default");
     setTheme("default");
-};
+  };
 
   const toggleThemeLight = () => {
-      window.localStorage.setItem("theme", "light");
-      setTheme("light");
+    window.localStorage.setItem("theme", "light");
+    setTheme("light");
   };
 
   const toggleThemeDark = () => {
-      window.localStorage.setItem("theme", "dark");
-      setTheme("dark");
+    window.localStorage.setItem("theme", "dark");
+    setTheme("dark");
   };
 
   useEffect(() => {
@@ -30,11 +30,11 @@ function Inicial() {
   }, []);
 
   const selectTheme = theme => {
-    if (theme === "default"){
+    if (theme === "default") {
       return defaultTheme;
-    }else if (theme === "light"){
+    } else if (theme === "light") {
       return lightTheme;
-    }else{
+    } else {
       return darkTheme;
     }
   }
@@ -44,11 +44,10 @@ function Inicial() {
       <Fragment>
         <GlobalTheme />
         <App></App>
-        <div style={{textAlign:"center"}}>
-            <button className="margin">DOWNLOAD THE TASKS</button>
-            <button className="margin" onClick={toggleThemeDefault}>THEME DEFAULT</button>
-            <button className="margin" onClick={toggleThemeLight}>THEME LIGHT</button>
-            <button className="margin" onClick={toggleThemeDark}>THEME DARK</button>
+        <div style={{ textAlign: "center" }}>
+          <button className="margin" onClick={toggleThemeDefault}>THEME DEFAULT</button>
+          <button className="margin" onClick={toggleThemeLight}>THEME LIGHT</button>
+          <button className="margin" onClick={toggleThemeDark}>THEME DARK</button>
         </div>
       </Fragment>
     </ThemeProvider>

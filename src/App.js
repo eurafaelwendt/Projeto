@@ -42,25 +42,18 @@ class App extends Component {
     super(props);
 
     this.state = {
-      tasks: [{
-        id: 0,
-        status: false,
-        nome: 'React'
-      },
-      {
-        id: 1,
-        status: false,
-        nome: 'Rafael'
-      },
-      {
-        id: 2,
-        status: false,
-        nome: 'CSS'
-      }],
+      tasks: [],
       filterFn: 'all',
       filterText: '',
     }
-}
+
+    const string = localStorage.getItem("tasks");
+    const value = JSON.parse(string);
+
+    if (value !== null) {
+      this.state.tasks = value;
+    }
+  }
 
   // Edita a task
   editTask = task => {
@@ -68,28 +61,26 @@ class App extends Component {
     const { tasks } = this.state;
     const edit = prompt("Edit task:");
 
-    if (edit === ''){
-      console.log('vazio');
-    }else{
-      console.log('não é vazio')
-    }
-
     this.setState(
       {
         tasks: tasks.map((t) => {
-          if(task.id !== t.id){
+          if (task.id !== t.id) {
             return t;
           }
-          if(edit !== ''){
+          if (edit !== '') {
             console.log(edit);
             task.nome = edit;
             return task;
-          }else{
+          } else {
             return t;
           }
         }),
       }
     );
+
+    setTimeout(() => {
+      localStorage.setItem('tasks', JSON.stringify(this.state.tasks));
+    }, 0)
   }
 
   // Modifica o status da tarefa concluida/pendente
@@ -107,6 +98,10 @@ class App extends Component {
         }),
       }
     );
+
+    setTimeout(() => {
+      localStorage.setItem('tasks', JSON.stringify(this.state.tasks));
+    }, 0)
   }
 
   // Remove uma task da lista
@@ -117,14 +112,22 @@ class App extends Component {
     this.setState(
       {
         tasks: tasks.filter((t) => {
-          return task.id !== t.id;
+          if (task.id !== t.id) {
+            return t;
+          }
         }),
       }
     );
+
+    setTimeout(() => {
+      localStorage.setItem('tasks', JSON.stringify(this.state.tasks));
+    }, 0)
   }
 
   // Remove todas as tasks da lista
   removeAll = () => {
+
+    localStorage.removeItem('tasks');
 
     this.setState(
       {
@@ -171,53 +174,59 @@ class App extends Component {
 
   // Adiciona uma nova task
   listenerSubmit = task => {
+
     this.setState({
       tasks: [
         ...this.state.tasks,
-        { id: this.state.tasks.length, nome: task.nome, status: false }
+        { id: this.state.tasks.length, status: false, nome: task.nome }
       ]
     })
+
+    setTimeout(() => {
+      localStorage.setItem('tasks', JSON.stringify(this.state.tasks));
+    }, 0)
   }
 
   render() {
     return (
-        <Fragment>
-          <Header changeTheme={this.props.changeTheme}></Header>
-          <div className="container">
-            <Form listenerSubmit={this.listenerSubmit}
-            setFilterText={this.setFilterText}></Form>
-            <p>
-              <label>
-                <input className="with-gap"
-                  name="group1"
-                  type="radio"
-                  onClick={this.filterRadiousAll}/>
-                <span>All</span>
-              </label>
-              <label className="margin">
-                <input className="with-gap"
-                  name="group1" type="radio"
-                  onClick={this.filterRadiousDone} />
-                <span>Done</span>
-              </label>
-              <label className="margin">
-                <input className="with-gap"
-                  name="group1"
-                  type="radio"
-                  onClick={this.filterRadiousToDo} />
-                <span>ToDo</span>
-              </label>
-            </p>
-            <TaskTable tasks={fns[this.state.filterFn](this.state.tasks, this.state.filterText)}
-              status={this.state.tasks.status}
-              removeTask={this.removeTask}
-              removeAll={this.removeAll}
-              statusModify={this.statusModify}
-              editTask={this.editTask}>
-            </TaskTable>
-            <button onClick={this.removeAll} className="margin">REMOVE ALL</button>
-          </div>
-        </Fragment>
+      <Fragment>
+        <Header changeTheme={this.props.changeTheme}></Header>
+        <div className="container">
+          <Form listenerSubmit={this.listenerSubmit}
+            setFilterText={this.setFilterText}
+            tasks={this.state.tasks}></Form>
+          <p>
+            <label>
+              <input className="with-gap"
+                name="group1"
+                type="radio"
+                onClick={this.filterRadiousAll} />
+              <span>All</span>
+            </label>
+            <label className="margin">
+              <input className="with-gap"
+                name="group1" type="radio"
+                onClick={this.filterRadiousDone} />
+              <span>Done</span>
+            </label>
+            <label className="margin">
+              <input className="with-gap"
+                name="group1"
+                type="radio"
+                onClick={this.filterRadiousToDo} />
+              <span>ToDo</span>
+            </label>
+          </p>
+          <TaskTable tasks={fns[this.state.filterFn](this.state.tasks, this.state.filterText)}
+            status={this.state.tasks.status}
+            removeTask={this.removeTask}
+            removeAll={this.removeAll}
+            statusModify={this.statusModify}
+            editTask={this.editTask}>
+          </TaskTable>
+          <button onClick={this.removeAll} className="margin">REMOVE ALL</button>
+        </div>
+      </Fragment>
     );
   }
 }

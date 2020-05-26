@@ -15,7 +15,6 @@ class Form extends Component {
 
         this.stateInicial = {
             nome: '',
-            search: '',
         }
 
         this.state = this.stateInicial;

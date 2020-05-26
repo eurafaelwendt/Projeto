@@ -16,6 +16,7 @@ export default createGlobalStyle`
   input{
     padding: 5px;
     margin: 10px;
+    color: ${({ theme }) => theme.input};
   }
 
   a{

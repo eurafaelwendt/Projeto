@@ -3,6 +3,7 @@ import Header from './Header';
 import './App.css';
 import Form from './Form';
 import TaskTable from './TaskTable';
+// import { ThemeProvider } from 'styled-components';
 
 // Filtra apenas as tarefas finalizadas
 const filterDone = (tasks) => {
@@ -200,10 +201,19 @@ class App extends Component {
     document.body.removeChild(link);
   }
 
+  uploadTask = (event) => {
+    console.log(event.target.files[0]);
+    // const file = event.target.files[0];
+    // const string_file = JSON.parse(file);
+    // const str = JSON.stringify(string_file);
+    // // console.log()
+  }
+
   render() {
     return (
       <Fragment>
         <Header changeTheme={this.props.changeTheme}></Header>
+        <input type="file" name="file" onChange={this.uploadTask}/>
         <div className="container">
           <Form listenerSubmit={this.listenerSubmit}
             setFilterText={this.setFilterText}
@@ -238,7 +248,7 @@ class App extends Component {
             editTask={this.editTask}>
           </TaskTable>
           <button onClick={this.removeAll} className="margin">REMOVE ALL</button>
-          <button className="margin" onClick={this.csvTask} style={{backgroundColor:"#4db6ac"}}>DOWNLOAD THE TASKS</button>
+          <button className="margin" onClick={this.csvTask}>DOWNLOAD THE TASKS</button>
         </div>
       </Fragment>
     );

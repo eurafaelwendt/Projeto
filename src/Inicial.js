@@ -44,7 +44,7 @@ function Inicial() {
       <Fragment>
         <GlobalTheme />
         <App></App>
-        <div style={{ textAlign: "center" }}>
+        <div style={{textAlign:"center"}}>
           <button className="margin" onClick={toggleThemeDefault}>THEME DEFAULT</button>
           <button className="margin" onClick={toggleThemeLight}>THEME LIGHT</button>
           <button className="margin" onClick={toggleThemeDark}>THEME DARK</button>

@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import Header from './Header';
 import './App.css';
 import Form from './Form';
 import TaskTable from './TaskTable';
@@ -218,7 +217,6 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <Header changeTheme={this.props.changeTheme}></Header>
         <input type="file" name="file" onChange={this.uploadTask}/>
         <div className="container">
           <Form listenerSubmit={this.listenerSubmit}

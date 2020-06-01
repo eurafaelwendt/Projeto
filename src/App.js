@@ -202,11 +202,17 @@ class App extends Component {
   }
 
   uploadTask = (event) => {
-    console.log(event.target.files[0]);
-    // const file = event.target.files[0];
-    // const string_file = JSON.parse(file);
-    // const str = JSON.stringify(string_file);
-    // // console.log()
+    const file = event.target.files[0];
+    var reader = new FileReader();
+    reader.readAsText(file);
+
+    reader.onload = function (e) {
+
+      var text = reader.result;
+      localStorage.setItem('tasks', text);
+    }
+
+    window.location.reload(false);
   }
 
   render() {
